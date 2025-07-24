@@ -28,6 +28,10 @@
                 <i data-lucide="message-circle" class="w-4 h-4"></i>
                 <span>Contact Us</span>
             </a>
+            <a href="urgent-vet.php" class="flex items-center space-x-1 text-red-600 hover:text-red-700 transition-colors font-medium">
+                <i data-lucide="stethoscope" class="w-4 h-4"></i>
+                <span>🚨 Urgent Vet</span>
+            </a>
         </nav>
 
         <div class="flex items-center space-x-4">
@@ -68,6 +72,10 @@
                 <a href="contact.php" class="flex items-center space-x-2 text-green-700 hover:text-green-600 transition-colors">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
                     <span>Contact Us</span>
+                </a>
+                <a href="urgent-vet.php" class="flex items-center space-x-2 text-red-600 hover:text-red-700 transition-colors font-medium">
+                    <i data-lucide="stethoscope" class="w-4 h-4"></i>
+                    <span>🚨 Urgent Vet</span>
                 </a>
                 <div class="flex flex-col space-y-2 pt-2 border-t border-green-200">
                     <button class="border border-green-600 text-green-600 hover:bg-green-50 bg-transparent px-4 py-2 rounded-md text-sm font-medium transition-colors">
