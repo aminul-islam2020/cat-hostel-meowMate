@@ -4,7 +4,7 @@
             <div class="flex items-center justify-center w-10 h-10 bg-green-600 rounded-full">
                 <i data-lucide="cat" class="w-6 h-6 text-white"></i>
             </div>
-            <span class="text-xl font-bold text-green-800">PurrfectStay</span>
+            <span class="text-xl font-bold text-green-800">MeowMate</span>
         </a>
 
         <!-- Desktop Navigation -->

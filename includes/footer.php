@@ -7,7 +7,7 @@
                     <div class="flex items-center justify-center w-10 h-10 bg-green-600 rounded-full">
                         <i data-lucide="cat" class="w-6 h-6 text-white"></i>
                     </div>
-                    <span class="text-xl font-bold text-white">PurrfectStay</span>
+                    <span class="text-xl font-bold text-white">MeowMate</span>
                 </div>
                 <p class="text-green-100 text-sm">
                     Professional cat boarding services with love, care, and attention your feline friend deserves.
@@ -54,15 +54,15 @@
                 <div class="space-y-3">
                     <div class="flex items-center space-x-3">
                         <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
-                        <span class="text-green-100 text-sm">+1 (555) 123-CATS</span>
+                        <span class="text-green-100 text-sm">+8801764227527</span>
                     </div>
                     <div class="flex items-center space-x-3">
                         <i data-lucide="mail" class="w-4 h-4 text-green-400"></i>
-                        <span class="text-green-100 text-sm">hello@purrfectstay.com</span>
+                        <span class="text-green-100 text-sm">meowmate@gmail.com</span>
                     </div>
                     <div class="flex items-center space-x-3">
                         <i data-lucide="map-pin" class="w-4 h-4 text-green-400"></i>
-                        <span class="text-green-100 text-sm">123 Cat Street, Feline City, FC 12345</span>
+                        <span class="text-green-100 text-sm">Dhaka Cantonment, Dhaka, 1206</span>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
         <!-- Bottom Section -->
         <div class="border-t border-green-800 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center">
             <p class="text-xs text-green-100">
-                © <?php echo date('Y'); ?> PurrfectStay Cat Hostel. All rights reserved.
+                © <?php echo date('Y'); ?> MeowMate Cat Hostel. All rights reserved.
             </p>
             <nav class="flex gap-4 sm:gap-6 mt-4 sm:mt-0">
                 <a href="#" class="text-xs hover:underline underline-offset-4 text-green-100 hover:text-white">Terms of Service</a>

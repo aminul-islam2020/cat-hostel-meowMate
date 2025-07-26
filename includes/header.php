@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($page_title) ? $page_title : 'PurrfectStay - Cat Hostel'; ?></title>
+    <title><?php echo isset($page_title) ? $page_title : 'MeowMate - Cat Hostel'; ?></title>
     <meta name="description" content="<?php echo isset($page_description) ? $page_description : 'Professional cat boarding services'; ?>">
     <meta name="keywords" content="cat hostel, cat boarding, pet care, cat sitting, cat hotel">
     
