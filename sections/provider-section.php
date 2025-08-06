@@ -52,7 +52,7 @@
                     Become a Provider
                 </button>
             </div>
-            <img src="https://via.placeholder.com/500x400/16a34a/ffffff?text=Cat+Caregiver" width="500" height="400"
+            <img src="https://i.postimg.cc/66VbMgPj/hostel-provider-hero.avif" width="500" height="400"
                 alt="Smiling woman caregiver sitting on floor surrounded by 4 different cats in a bright, clean hostel room"
                 class="mx-auto aspect-video overflow-hidden rounded-xl object-cover" />
         </div>

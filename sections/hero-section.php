@@ -46,7 +46,7 @@
             <div class="flex items-center justify-center">
                 <div class="relative">
                     <img
-                        src="https://via.placeholder.com/400x400/16a34a/ffffff?text=Happy+Cats+Playing"
+                        src="https://i.postimg.cc/wT4F8j03/hero-img.jpg"
                         width="400"
                         height="400"
                         alt="Happy orange and gray cats playing together in a cozy hostel room with cat trees and toys"

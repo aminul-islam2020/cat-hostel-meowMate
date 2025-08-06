@@ -1,42 +1,42 @@
 <?php
 $galleryImages = [
     [
-        'src' => 'https://via.placeholder.com/250x300/16a34a/ffffff?text=Cozy+Cat+Suites',
+        'src' => 'https://i.postimg.cc/WpkJbbNh/cozy-cat.jpg',
         'alt' => 'Luxurious cat suite with comfortable bedding, climbing trees, and a black cat relaxing by the window',
         'title' => 'Cozy Cat Suites'
     ],
     [
-        'src' => 'https://via.placeholder.com/250x200/22c55e/ffffff?text=Cats+Napping',
+        'src' => 'https://i.postimg.cc/K8w2zFv8/gallery-img.jpg',
         'alt' => 'Three cats of different colors peacefully napping together on soft blankets in a sunny room',
         'title' => 'Peaceful Nap Time'
     ],
     [
-        'src' => 'https://via.placeholder.com/250x200/4ade80/ffffff?text=Play+Time',
+        'src' => 'https://i.postimg.cc/02jFJ34M/gallery-img-2.jpg',
         'alt' => 'Energetic kittens playing with colorful toys in a bright, spacious play area with climbing structures',
         'title' => 'Fun Play Time'
     ],
     [
-        'src' => 'https://via.placeholder.com/250x300/86efac/000000?text=Meal+Time',
+        'src' => 'https://i.postimg.cc/fTrnD1vz/gallery-img-3.jpg',
         'alt' => 'Multiple cats eating from individual bowls in a clean, organized feeding area with natural lighting',
         'title' => 'Meal Time Together'
     ],
     [
-        'src' => 'https://via.placeholder.com/250x300/bbf7d0/000000?text=Outdoor+Garden',
+        'src' => 'https://i.postimg.cc/3JWVSnQP/gallery-img-4.jpg',
         'alt' => 'Secure outdoor garden area with cats exploring cat-safe plants, climbing posts, and sunny spots',
         'title' => 'Outdoor Cat Garden'
     ],
     [
-        'src' => 'https://via.placeholder.com/250x200/dcfce7/000000?text=Cuddle+Time',
+        'src' => 'https://i.postimg.cc/q7gWYwKt/gallery-img-5.jpg',
         'alt' => 'Staff member gently cuddling with a content orange tabby cat in a comfortable reading nook',
         'title' => 'Cuddle Time'
     ],
     [
-        'src' => 'https://via.placeholder.com/250x200/f0fdf4/000000?text=Spa+Treatment',
+        'src' => 'https://i.postimg.cc/j57mqjZt/gallery-img-6.jpg',
         'alt' => 'Relaxed long-haired cat receiving gentle spa treatment in a calm, soothing environment',
         'title' => 'Spa Treatment'
     ],
     [
-        'src' => 'https://via.placeholder.com/250x300/15803d/ffffff?text=Night+Comfort',
+        'src' => 'https://i.postimg.cc/4yv0tFD0/gallery-img-7.jpg',
         'alt' => 'Peaceful nighttime scene with cats sleeping comfortably in individual cozy beds with soft lighting',
         'title' => 'Night Time Comfort'
     ]

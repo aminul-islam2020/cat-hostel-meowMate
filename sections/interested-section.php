@@ -2,7 +2,7 @@
     <div class="container px-4 md:px-6 mx-auto max-w-7xl">
         <div class="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
             <img
-                src="https://via.placeholder.com/500x400/22c55e/ffffff?text=Cat+Owner+Goodbye"
+                src="https://i.postimg.cc/t48zqNfn/cat-hostel-hero.avif"
                 width="500"
                 height="400"
                 alt="Cat owner gently petting a tabby cat in a comfortable hostel suite with cat bed and toys visible"

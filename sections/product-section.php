@@ -1,19 +1,19 @@
 <?php
 $products = [
     [
-        'image' => 'https://via.placeholder.com/300x200/16a34a/ffffff?text=Premium+Cat+Food',
+        'image' => 'https://i.postimg.cc/CKyjTLBj/product-img-1.jpg',
         'title' => 'Premium Cat Food',
         'description' => 'High-quality, nutritious cat food and treats to keep your cat healthy and satisfied.',
         'buttonText' => 'Shop Now'
     ],
     [
-        'image' => 'https://via.placeholder.com/300x200/22c55e/ffffff?text=Cat+Toys',
+        'image' => 'https://i.postimg.cc/j52qMyxv/product-img-2.avif',
         'title' => 'Toys & Accessories',
         'description' => 'Fun toys, comfortable beds, and essential accessories for your cat\'s entertainment and comfort.',
         'buttonText' => 'Browse Toys'
     ],
     [
-        'image' => 'https://via.placeholder.com/300x200/4ade80/ffffff?text=Cat+Grooming',
+        'image' => 'https://i.postimg.cc/VsSn6Cqj/product-img-3.jpg',
         'title' => 'Grooming Services',
         'description' => 'Professional grooming services including bathing, nail trimming, and fur care.',
         'buttonText' => 'Book Grooming'
@@ -41,7 +41,7 @@ $products = [
                             width="300"
                             height="200"
                             alt="<?php echo $product['description']; ?>"
-                            class="w-full h-48 object-cover rounded-lg"
+                            class="w-full h-60 object-cover rounded-lg"
                         />
                         <h3 class="text-2xl font-semibold leading-none tracking-tight text-green-900"><?php echo $product['title']; ?></h3>
                     </div>
