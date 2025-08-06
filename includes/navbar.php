@@ -36,12 +36,12 @@
 
         <div class="flex items-center space-x-4">
             <div class="hidden md:flex items-center space-x-2">
-                <button class="border border-green-600 text-green-600 hover:bg-green-50 bg-transparent px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                <a href="sign-in.php" class="border border-green-600 text-green-600 hover:bg-green-50 bg-transparent px-4 py-2 rounded-md text-sm font-medium transition-colors">
                     Sign In
-                </button>
-                <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                </a>
+                <a href="sign-up.php" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
                     Sign Up
-                </button>
+                </a>
             </div>
 
             <!-- Mobile menu button -->
