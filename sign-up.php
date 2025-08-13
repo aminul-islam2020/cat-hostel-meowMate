@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = trim($_POST['role'] ?? '');
     $password = trim($_POST['password'] ?? '');
     $confirm_password = trim($_POST['confirm_password'] ?? '');
-    
+
     // Basic validation
     if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($role) || empty($password) || empty($confirm_password)) {
         $error = 'All fields are required';
@@ -25,18 +25,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!in_array($role, ['customer', 'provider', 'vet'])) {
         $error = 'Please select a valid role';
     } else {
-        // In a real application, you would save to database here
-        // For demo purposes, we'll just show success message
-        $success = 'Account created successfully! You can now sign in.';
-        
-        // Clear form data on success
-        $first_name = $last_name = $email = $phone = $role = '';
+        // Database connection
+        $servername = "127.0.0.1";
+        $username_db = "root"; // change if needed
+        $password_db = ""; // change if needed
+        $dbname = "meowmate_db";
+
+        try {
+            $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username_db, $password_db);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Check if email already exists
+            $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+            $stmt->execute([$email]);
+            if ($stmt->rowCount() > 0) {
+                $error = "Email is already registered.";
+            } else {
+                // Hash password
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                // Insert user into database
+                $stmt = $pdo->prepare("INSERT INTO users 
+                    (first_name, last_name, email, phone, username, address, password, role, status, entry_date)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+
+                $usernameGen = strtolower($first_name . "." . $last_name);
+                $status = 'active';
+                $address = '';
+
+                $stmt->execute([
+                    $first_name,
+                    $last_name,
+                    $email,
+                    $phone,
+                    $usernameGen,
+                    $address,
+                    $hashedPassword,
+                    $role,
+                    $status
+                ]);
+
+                $success = 'Account created successfully! You can now sign in.';
+                $first_name = $last_name = $email = $phone = $role = '';
+            }
+        } catch (PDOException $e) {
+            $error = "Database error: " . $e->getMessage();
+        }
     }
 }
 
 $page_title = "Sign Up - PurrfectStay";
 $page_description = "Create your PurrfectStay account to access our cat hostel services.";
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +122,7 @@ $page_description = "Create your PurrfectStay account to access our cat hostel s
                     </div>
                     <span class="text-xl font-bold text-green-800">PurrfectStay</span>
                 </a>
-                <a href="signin.php" class="text-green-600 hover:text-green-700 font-medium">
+                <a href="sign-in.php" class="text-green-600 hover:text-green-700 font-medium">
                     Already have an account? Sign In
                 </a>
             </div>
@@ -165,7 +206,7 @@ $page_description = "Create your PurrfectStay account to access our cat hostel s
                         type="tel" 
                         required 
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
-                        placeholder="+1 (555) 123-4567"
+                        placeholder="+880"
                         value="<?php echo htmlspecialchars($phone ?? ''); ?>"
                     />
                 </div>

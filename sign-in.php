@@ -1,71 +1,58 @@
 <?php
-session_start();
+require 'database.php'; // your DB connection file
 
-$error = '';
-$success = '';
+$error = ''; // initialize error
+$success = ''; // initialize success
 
-// Check if user is already logged in
-if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in']) {
-    header('Location: dashboard.php'); // Redirect to user dashboard
-    exit;
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
-    $password = trim($_POST['password'] ?? '');
-    
-    // Basic validation
-    if (empty($email) || empty($password)) {
-        $error = 'Email and password are required';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = 'Please enter a valid email address';
-    } else {
-        // Demo credentials for different user types
-        $demo_users = [
-            // Customers
-            'john.doe@example.com' => ['password' => 'customer123', 'role' => 'customer', 'name' => 'John Doe'],
-            'sarah.wilson@example.com' => ['password' => 'customer123', 'role' => 'customer', 'name' => 'Sarah Wilson'],
-            
-            // Hostel Providers
-            'provider@cozycats.com' => ['password' => 'provider123', 'role' => 'provider', 'name' => 'Cozy Cats Hostel'],
-            'admin@happypaws.com' => ['password' => 'provider123', 'role' => 'provider', 'name' => 'Happy Paws Lodge'],
-            
-            // Veterinarians
-            'dr.smith@vetcare.com' => ['password' => 'vet123', 'role' => 'vet', 'name' => 'Dr. Emily Smith'],
-            'dr.johnson@vetcare.com' => ['password' => 'vet123', 'role' => 'vet', 'name' => 'Dr. Michael Johnson']
-        ];
-        
-        if (isset($demo_users[$email]) && $demo_users[$email]['password'] === $password) {
-            // Set session variables
-            $_SESSION['user_logged_in'] = true;
-            $_SESSION['user_email'] = $email;
-            $_SESSION['user_name'] = $demo_users[$email]['name'];
-            $_SESSION['user_role'] = $demo_users[$email]['role'];
-            
-            // Redirect based on role
-            switch ($demo_users[$email]['role']) {
-                case 'customer':
-                    header('Location: customer-dashboard.php');
-                    break;
-                case 'provider':
-                    header('Location: provider-dashboard.php');
-                    break;
-                case 'vet':
-                    header('Location: vet-admin/dashboard.php');
-                    break;
-                default:
-                    header('Location: index.php');
-            }
-            exit;
-        } else {
-            $error = 'Invalid email or password';
-        }
+    // Get DB connection
+    $conn = getDatabaseConnection();
+
+    if (!$conn) {
+        die("Database connection failed.");
     }
-}
 
-$page_title = "Sign In - PurrfectStay";
-$page_description = "Sign in to your PurrfectStay account to access our cat hostel services.";
+    // Prepare SQL to get password and name
+    $sql = "SELECT id, first_name, last_name, password FROM users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        // Bind the result
+        $stmt->bind_result($user_id, $first_name, $last_name, $hashed_password);
+        $stmt->fetch();
+
+        if (password_verify($password, $hashed_password)) {
+           
+
+            setcookie('user_id', $user_id, time() + (7 * 24 * 60 * 60), "/");
+            setcookie('first_name', $first_name, time() + (7 * 24 * 60 * 60), "/");
+            setcookie('last_name', $last_name, time() + (7 * 24 * 60 * 60), "/");
+
+           
+            session_start();
+            $_SESSION['id'] = $user_id;
+
+            header("Location: index.php");
+            exit();
+        } else {
+            $error = "Invalid password.";
+        }
+    } else {
+        $error = " No account found with that email.";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

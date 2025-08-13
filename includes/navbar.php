@@ -1,3 +1,30 @@
+<?php
+session_start();
+require __DIR__ . '/../database.php'; 
+
+$conn = getDatabaseConnection();
+
+$user_name = '';
+$is_logged_in = false;
+
+if(isset($_COOKIE['user_id'])) {
+    $user_id = $_COOKIE['user_id'];
+
+    $stmt = $conn->prepare("SELECT first_name, last_name FROM users WHERE id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($first_name, $last_name);
+
+    if($stmt->fetch()) {
+        $user_name = trim($first_name . ' ' . $last_name);
+        $is_logged_in = true;
+    }
+
+    $stmt->close();
+}
+?>
+
+
 <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
     <div class="container flex h-16 items-center justify-between px-4 md:px-6 mx-auto max-w-7xl">
         <a href="index.php" class="flex items-center space-x-2">
@@ -36,13 +63,21 @@
 
         <div class="flex items-center space-x-4">
             <div class="hidden md:flex items-center space-x-2">
-                <a href="sign-in.php" class="border border-green-600 text-green-600 hover:bg-green-50 bg-transparent px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                    Sign In
-                </a>
-                <a href="sign-up.php" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                    Sign Up
-                </a>
-            </div>
+<?php if($is_logged_in): ?>
+    <span class="text-green-700 font-medium"><?php echo htmlspecialchars($first_name); ?></span>
+    <span class="text-green-700 font-medium"><?php echo htmlspecialchars($last_name); ?></span>
+    <a href="logout.php" class="text-red-600 hover:text-red-700 font-medium">Logout</a>
+<?php else: ?>
+    <a href="sign-in.php" class="border border-green-600 text-green-600 hover:bg-green-50 bg-transparent px-4 py-2 rounded-md text-sm font-medium transition-colors">
+        Sign In
+    </a>
+    <a href="sign-up.php" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+        Sign Up
+    </a>
+<?php endif; ?>
+
+</div>
+
 
             <!-- Mobile menu button -->
             <button id="mobile-menu-btn" class="md:hidden p-2 text-green-700 hover:text-green-600">
