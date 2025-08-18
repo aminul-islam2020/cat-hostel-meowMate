@@ -121,9 +121,10 @@ $page_title = ucfirst($current_page) . " - PurrfectStay";
                             <li><a href="?page=veterinarians"
                                     class="flex items-center space-x-3 px-3 py-2 rounded-lg <?= $current_page === 'veterinarians' ? 'bg-green-600 text-white' : 'text-gray-300 hover:bg-gray-800'; ?>"><i
                                         data-lucide="stethoscope" class="w-5 h-5"></i><span>Manage Vets</span></a></li>
-                            <li><a href="?page=products"
-                                    class="flex items-center space-x-3 px-3 py-2 rounded-lg <?= $current_page === 'products' ? 'bg-green-600 text-white' : 'text-gray-300 hover:bg-gray-800'; ?>"><i
-                                        data-lucide="shopping-bag" class="w-5 h-5"></i><span>Manage Products</span></a></li>
+
+                            <li><a href="?page=manage-products-Elements"
+                                    class="flex items-center space-x-3 px-3 py-2 rounded-lg <?= $current_page === 'manage-products-Elements' ? 'bg-green-600 text-white' : 'text-gray-300 hover:bg-gray-800'; ?>"><i
+                                        data-lucide="stethoscope" class="w-5 h-5"></i><span>Manage Products</span></a></li>
                             <li><a href="?page=analytics"
                                     class="flex items-center space-x-3 px-3 py-2 rounded-lg <?= $current_page === 'analytics' ? 'bg-green-600 text-white' : 'text-gray-300 hover:bg-gray-800'; ?>"><i
                                         data-lucide="bar-chart-3" class="w-5 h-5"></i><span>System Analytics</span></a></li>
@@ -264,7 +265,9 @@ $page_title = ucfirst($current_page) . " - PurrfectStay";
                     'services' => 'components/services.php',
                     'profile' => 'components/profile.php',
                     'welcome' => 'dashboard-pages/welcome.php',
-                    'manageuser' => 'dashboard-pages/manage-users.php'
+                    'manageuser' => 'dashboard-pages/manage-users.php',
+                    'productAdd' => 'dashboard-pages/add_product.php',
+                    'manage-products-Elements' => 'dashboard-pages/manage-products-Elements.php'
 
                 ];
 
