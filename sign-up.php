@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim($_POST['password'] ?? '');
     $confirm_password = trim($_POST['confirm_password'] ?? '');
 
-    // Basic validation
+    // Validation
     if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($role) || empty($password) || empty($confirm_password)) {
         $error = 'All fields are required';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -25,26 +25,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!in_array($role, ['customer', 'provider', 'vet'])) {
         $error = 'Please select a valid role';
     } else {
-        // Database connection
+        // DB Connection
         $servername = "127.0.0.1";
-        $username_db = "root"; // change if needed
-        $password_db = ""; // change if needed
+        $username_db = "root";
+        $password_db = "";
         $dbname = "meowmate_db";
 
         try {
             $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username_db, $password_db);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // Check if email already exists
+            // Check duplicate email
             $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
             $stmt->execute([$email]);
             if ($stmt->rowCount() > 0) {
                 $error = "Email is already registered.";
             } else {
-                // Hash password
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-                // Insert user into database
                 $stmt = $pdo->prepare("INSERT INTO users 
                     (first_name, last_name, email, phone, username, address, password, role, status, entry_date)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
@@ -61,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $usernameGen,
                     $address,
                     $hashedPassword,
-                    $role,
+                    $role,   // ✅ now will save "customer", "provider", or "vet"
                     $status
                 ]);
 
@@ -77,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $page_title = "Sign Up - PurrfectStay";
 $page_description = "Create your PurrfectStay account to access our cat hostel services.";
 ?>
+
 
 
 <!DOCTYPE html>
