@@ -267,6 +267,7 @@ $page_title = ucfirst($current_page) . " - PurrfectStay";
                     'welcome' => 'dashboard-pages/welcome.php',
                     'manageuser' => 'dashboard-pages/manage-users.php',
                     'productAdd' => 'dashboard-pages/add_product.php',
+                    // 'FetchProduct' => 'dashboard-pages/fetch_products.php',
                     'manage-products-Elements' => 'dashboard-pages/manage-products-Elements.php'
 
                 ];

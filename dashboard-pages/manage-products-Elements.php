@@ -127,9 +127,9 @@
                         <th class="text-left py-4 px-6 font-medium text-gray-900">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-200">
+                <tbody id="productTableBody" class="divide-y divide-gray-200">
                     <!-- Product Row 1 -->
-                    <tr class="hover:bg-gray-50">
+                    <!-- <tr class="hover:bg-gray-50">
                         <td class="py-4 px-6">
                             <input type="checkbox"
                                 class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500">
@@ -177,7 +177,7 @@
                                 </button>
                             </div>
                         </td>
-                    </tr>
+                    </tr> -->
 
 
                 </tbody>
@@ -364,5 +364,129 @@
 
             .catch(err => console.error(err));
     });
+
+    // Fethching data function
+    async function loadProducts() {
+        try {
+            const response = await fetch("fetch_products.php");
+            const result = await response.json();
+
+            if (!result.success) {
+                console.error("Error fetching products:", result.message);
+                return;
+            }
+
+            const tbody = document.getElementById("productTableBody");
+            tbody.innerHTML = "";
+
+            result.products.forEach(product => {
+                let row = `
+            <tr class="hover:bg-gray-50 text-sm sm:text-base">
+                <!-- Checkbox -->
+                <td class="py-3 px-4 sm:py-4 sm:px-6">
+                    <input type="checkbox" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500">
+                </td>
+
+                <!-- Image + Name + Short desc -->
+                <td class="py-3 px-4 sm:py-4 sm:px-6">
+                    <div class="flex items-center gap-3 sm:gap-4">
+                        <img src="${product.image || '/placeholder.svg?height=60&width=60&text=No+Image'}" 
+                             alt="${product.name}" 
+                             class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover flex-shrink-0">
+                        <div class="min-w-0">
+                            <h3 class="font-medium text-gray-900 truncate">${product.name}</h3>
+                            <p class="text-xs sm:text-sm text-gray-500 truncate">${product.short_desc || ""}</p>
+                        </div>
+                    </div>
+                </td>
+
+                <!-- Category (hidden on mobile) -->
+                <td class="py-3 px-4 sm:py-4 sm:px-6 hidden md:table-cell">
+                    <span class="px-2 py-0.5 sm:px-3 sm:py-1 bg-blue-100 text-blue-800 rounded-full text-xs sm:text-sm font-medium">
+                        ${product.category}
+                    </span>
+                </td>
+
+                <!-- Price -->
+                <td class="py-3 px-4 sm:py-4 sm:px-6">
+                    <span class="font-medium text-gray-900">
+                        $${product.sale_price || product.price}
+                    </span>
+                </td>
+
+                <!-- Stock (hidden on small screens) -->
+                <td class="py-3 px-4 sm:py-4 sm:px-6 hidden lg:table-cell">
+                    <span class="text-gray-900">${product.stock}</span>
+                </td>
+
+                <!-- Status -->
+                <td class="py-3 px-4 sm:py-4 sm:px-6">
+                    <span class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium
+                        ${product.status === "Active"
+                        ? "bg-green-100 text-green-800"
+                        : "bg-red-100 text-red-800"}">
+                        ${product.status}
+                    </span>
+                </td>
+
+                <!-- Sold (hidden on mobile) -->
+                <td class="py-3 px-4 sm:py-4 sm:px-6 hidden md:table-cell">
+                    <span class="text-gray-900">${product.sold || 0}</span>
+                </td>
+
+                <!-- Actions -->
+                <td class="py-3 px-4 sm:py-4 sm:px-6">
+                    <div class="flex items-center gap-1 sm:gap-2">
+                        <button onclick="editProduct(${product.id})"
+                            class="p-1.5 sm:p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                            <i data-lucide="edit" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="viewProduct(${product.id})"
+                            class="p-1.5 sm:p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors">
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="deleteProduct(${product.id})"
+                            class="p-1.5 sm:p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            `;
+                tbody.innerHTML += row;
+            });
+
+            // Render Lucide icons
+            lucide.createIcons();
+        } catch (err) {
+            console.error("Fetch error:", err);
+        }
+    }
+
+    // Load products on page ready
+    document.addEventListener("DOMContentLoaded", loadProducts);
+
+    // delete method
+    async function deleteProduct(id) {
+        if (!confirm("Are you sure you want to delete this product?")) return;
+
+        try {
+            const response = await fetch(`fetch_products.php?id=${id}`, { method: "DELETE" });
+            const result = await response.json();
+
+            if (result.success) {
+                alert("Product deleted!");
+                loadProducts(); // reload table
+            } else {
+                alert("Error deleting product: " + result.message);
+            }
+        } catch (err) {
+            console.error("Delete error:", err);
+            alert("Something went wrong while deleting the product.");
+        }
+    }
+
+
+
 
 </script>

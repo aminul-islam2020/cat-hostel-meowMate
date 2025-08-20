@@ -41,14 +41,12 @@ if (isset($_COOKIE['user_id'])) {
                 <i data-lucide="home" class="w-4 h-4"></i>
                 <span>Home</span>
             </a>
-            <a href="providers.php"
+            <a href="find-providers.php"
                 class="flex items-center space-x-1 text-green-700 hover:text-green-600 transition-colors">
                 <i data-lucide="users" class="w-4 h-4"></i>
                 <span>Cat Hostel Providers</span>
             </a>
-            <a href="interested.php" class="text-green-700 hover:text-green-600 transition-colors">
-                Give Your Cat to Hostel
-            </a>
+
             <a href="products.php"
                 class="flex items-center space-x-1 text-green-700 hover:text-green-600 transition-colors">
                 <i data-lucide="package" class="w-4 h-4"></i>
