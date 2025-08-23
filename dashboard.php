@@ -155,6 +155,10 @@ $page_title = ucfirst($current_page) . " - PurrfectStay";
                             <li><a href="?page=profile"
                                     class="flex items-center space-x-3 px-3 py-2 rounded-lg <?= $current_page === 'profile' ? 'bg-green-600 text-white' : 'text-gray-300 hover:bg-gray-800'; ?>"><i
                                         data-lucide="user" class="w-5 h-5"></i><span>Profile</span></a></li>
+                            <li><a href="?page=add-service"
+                                    class="flex items-center space-x-3 px-3 py-2 rounded-lg <?= $current_page === 'add-service' ? 'bg-green-600 text-white' : 'text-gray-300 hover:bg-gray-800'; ?>"><i
+                                        data-lucide="user" class="w-5 h-5"></i><span>add-service</span></a></li>
+
                         </ul>
                     </div>
 
@@ -255,18 +259,19 @@ $page_title = ucfirst($current_page) . " - PurrfectStay";
                 $components = [
                     'overview' => 'dashboard-pages/overview.php',
                     'users' => 'components/users.php',
-                    'providers' => 'components/providers.php',
+                    'providers' => 'dashboard-pages/providers.php',
                     'veterinarians' => 'components/veterinarians.php',
                     'products' => 'components/products.php',
                     'analytics' => 'components/analytics.php',
                     'settings' => 'components/settings.php',
-                    'bookings' => 'components/bookings.php',
-                    'rooms' => 'components/rooms.php',
+                    'bookings' => 'dashboard-pages/bookings.php',
+                    'rooms' => 'dashboard-pages/rooms.php',
                     'services' => 'components/services.php',
-                    'profile' => 'components/profile.php',
+                    // 'profile' => 'dashboard-pages/edit-profile.php',
                     'welcome' => 'dashboard-pages/welcome.php',
                     'manageuser' => 'dashboard-pages/manage-users.php',
                     'productAdd' => 'dashboard-pages/add_product.php',
+                    'add-service' => 'dashboard-pages/edit-profile.php',
                     // 'FetchProduct' => 'dashboard-pages/fetch_products.php',
                     'manage-products-Elements' => 'dashboard-pages/manage-products-Elements.php'
 

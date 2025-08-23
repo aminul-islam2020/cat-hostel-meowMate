@@ -50,7 +50,8 @@
                     </li>
                     <li><a href="find-providers.php"
                             class="text-gray-300 hover:text-white transition-colors text-sm">Find Providers</a></li>
-                    <li><a href="providers.php" class="text-gray-300 hover:text-white transition-colors text-sm">Become
+                    <li><a href="apply-provider.php"
+                            class="text-gray-300 hover:text-white transition-colors text-sm">Become
                             a Provider</a></li>
                     <li><a href="interested.php" class="text-gray-300 hover:text-white transition-colors text-sm">Book
                             Cat Stay</a></li>
