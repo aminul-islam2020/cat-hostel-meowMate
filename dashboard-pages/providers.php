@@ -201,131 +201,161 @@ $conn->close();
                                 <?= htmlspecialchars(date("Y-m-d", strtotime($provider['created_at']))) ?>
                             </div>
                             <div class="flex space-x-2">
-                                <?php if ($provider['status'] === 'pending'): ?>
-                                    <button
-                                        class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-colors approve-btn"
-                                        data-id="<?= $provider['id'] ?>">Approve</button>
-                                    <button
-                                        class="bg-orange-600 text-white px-3 py-1 rounded text-sm hover:bg-orange-700 transition-colors suspend-btn"
-                                        data-id="<?= $provider['id'] ?>">Suspend</button>
-                                <?php elseif ($provider['status'] === 'active'): ?>
-                                    <button
-                                        class="bg-orange-600 text-white px-3 py-1 rounded text-sm hover:bg-orange-700 transition-colors suspend-btn"
-                                        data-id="<?= $provider['id'] ?>">Suspend</button>
-                                <?php elseif ($provider['status'] === 'suspended'): ?>
-                                    <button
-                                        class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 transition-colors approve-btn"
-                                        data-id="<?= $provider['id'] ?>">Reactivate</button>
-                                <?php endif; ?>
+                                <div class="flex space-x-2">
+                                    <?php if ($provider['status'] === 'pending'): ?>
+                                        <button
+                                            class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 transition-colors approve-btn"
+                                            data-id="<?= $provider['id'] ?>">Active</button>
+                                        <button
+                                            class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700 transition-colors deny-btn"
+                                            data-id="<?= $provider['id'] ?>">Deny</button>
+                                    <?php elseif ($provider['status'] === 'active'): ?>
+                                        <span class="text-green-600 font-semibold">Active</span>
+                                    <?php elseif ($provider['status'] === 'denied'): ?>
+                                        <span class="text-red-600 font-semibold">Denied</span>
+                                    <?php endif; ?>
+                                </div>
+
+
+
                             </div>
                         </div>
+
                     </div>
-
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-
-    <!-- Photo Modal -->
-    <div id="photo-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 hidden">
-        <div class="bg-white rounded-lg max-w-4xl w-full p-6">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-xl font-semibold">Facility Photos</h3>
-                <button id="close-photo-modal" class="text-gray-500 hover:text-gray-700">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
+                <?php endforeach; ?>
             </div>
-            <div id="photo-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </div>
-    </div>
 
-    <script>
-        lucide.createIcons();
+        <!-- Photo Modal -->
+        <div id="photo-modal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 hidden">
+            <div class="bg-white rounded-lg max-w-4xl w-full p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-semibold">Facility Photos</h3>
+                    <button id="close-photo-modal" class="text-gray-500 hover:text-gray-700">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <div id="photo-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            </div>
+        </div>
 
-        // Filter buttons with cookie
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                const filter = this.dataset.filter;
-                document.cookie = `provider_filter=${filter}; path=/; max-age=86400`;
-                document.querySelectorAll('.filter-btn').forEach(b => b.className = 'filter-btn px-3 py-1 text-sm rounded-md text-gray-600 hover:bg-gray-100');
-                this.className = 'filter-btn px-3 py-1 text-sm rounded-md bg-green-100 text-green-800';
-                document.querySelectorAll('.provider-card').forEach(card => {
-                    card.style.display = (filter === 'all' || card.dataset.status === filter) ? 'block' : 'none';
+        <script>
+            lucide.createIcons();
+
+            // Filter buttons with cookie
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const filter = this.dataset.filter;
+                    document.cookie = `provider_filter=${filter}; path=/; max-age=86400`;
+                    document.querySelectorAll('.filter-btn').forEach(b => b.className = 'filter-btn px-3 py-1 text-sm rounded-md text-gray-600 hover:bg-gray-100');
+                    this.className = 'filter-btn px-3 py-1 text-sm rounded-md bg-green-100 text-green-800';
+                    document.querySelectorAll('.provider-card').forEach(card => {
+                        card.style.display = (filter === 'all' || card.dataset.status === filter) ? 'block' : 'none';
+                    });
                 });
             });
-        });
 
-        // Load cookie filter
-        window.addEventListener('DOMContentLoaded', () => {
-            const match = document.cookie.match(/(^|;)\\s*provider_filter=([^;]+)/);
-            if (match) {
-                const btn = document.querySelector(`.filter-btn[data-filter="${match[2]}"]`);
-                if (btn) btn.click();
-            }
-        });
+            // Load cookie filter
+            window.addEventListener('DOMContentLoaded', () => {
+                const match = document.cookie.match(/(^|;)\\s*provider_filter=([^;]+)/);
+                if (match) {
+                    const btn = document.querySelector(`.filter-btn[data-filter="${match[2]}"]`);
+                    if (btn) btn.click();
+                }
+            });
 
-        // Photos modal
-        document.querySelectorAll('.view-photos-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                const photos = JSON.parse(this.dataset.photos);
-                const gallery = document.getElementById('photo-gallery');
-                gallery.innerHTML = photos.map(photo => `
+            // Photos modal
+            document.querySelectorAll('.view-photos-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const photos = JSON.parse(this.dataset.photos);
+                    const gallery = document.getElementById('photo-gallery');
+                    gallery.innerHTML = photos.map(photo => `
             <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
                 <img src="${photo}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
             </div>
         `).join('');
-                document.getElementById('photo-modal').classList.remove('hidden');
+                    document.getElementById('photo-modal').classList.remove('hidden');
+                });
             });
-        });
 
-        // Document view
-        document.querySelectorAll('.view-document-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                alert('Opening document: ' + this.dataset.document);
+            // Document view
+            document.querySelectorAll('.view-document-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    alert('Opening document: ' + this.dataset.document);
+                });
             });
-        });
 
-        // Close modal
-        document.getElementById('close-photo-modal').addEventListener('click', () => document.getElementById('photo-modal').classList.add('hidden'));
-        document.getElementById('photo-modal').addEventListener('click', function (e) { if (e.target === this) this.classList.add('hidden'); });
+            // Close modal
+            document.getElementById('close-photo-modal').addEventListener('click', () => document.getElementById('photo-modal').classList.add('hidden'));
+            document.getElementById('photo-modal').addEventListener('click', function (e) { if (e.target === this) this.classList.add('hidden'); });
 
-        // Toast
-        function showMessage(msg, type) {
-            const container = document.getElementById('message-container');
-            const colorClass = type === 'success' ? 'bg-green-100 border-green-400 text-green-700' : (type === 'error' ? 'bg-red-100 border-red-400 text-red-700' : 'bg-orange-100 border-orange-400 text-orange-700');
-            container.innerHTML = `<div class="${colorClass} border px-4 py-3 rounded">${msg}</div>`;
-            container.classList.remove('hidden');
-            setTimeout(() => container.classList.add('hidden'), 5000);
-        }
+            // Toast
+            function showMessage(msg, type) {
+                const container = document.getElementById('message-container');
+                const colorClass = type === 'success' ? 'bg-green-100 border-green-400 text-green-700' : (type === 'error' ? 'bg-red-100 border-red-400 text-red-700' : 'bg-orange-100 border-orange-400 text-orange-700');
+                container.innerHTML = `<div class="${colorClass} border px-4 py-3 rounded">${msg}</div>`;
+                container.classList.remove('hidden');
+                setTimeout(() => container.classList.add('hidden'), 5000);
+            }
 
-        // Approve / Suspend AJAX
-        document.querySelectorAll('.approve-btn').forEach(btn => { btn.addEventListener('click', function () { updateStatus(this.dataset.id, 'active'); }); });
-        document.querySelectorAll('.suspend-btn').forEach(btn => { btn.addEventListener('click', function () { updateStatus(this.dataset.id, 'suspended'); }); });
+            function updateStatus(id, status) {
+                fetch('fetch_providers_json.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `id=${id}&status=${status}`
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            showMessage(`Provider status updated to ${status}`, 'success');
+                            const card = document.querySelector(`.provider-card[data-id='${id}']`);
+                            card.dataset.status = status;
 
-        function updateStatus(id, status) {
-            fetch('dashboard.php?page=update-provider-status.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `id=${id}&status=${status}`
-            }).then(res => res.json()).then(data => {
-                if (data.success) {
-                    showMessage(`Provider status updated to ${status}`, 'success');
-                    const card = document.querySelector(`.provider-card[data-id='${id}']`);
-                    const oldStatus = card.dataset.status;
-                    card.dataset.status = status;
-                    card.querySelector('span').textContent = status.charAt(0).toUpperCase() + status.slice(1);
-                    const activeFilter = document.querySelector('.filter-btn.bg-green-100').dataset.filter;
-                    if (activeFilter !== 'all' && activeFilter !== status) card.style.display = 'none'; else card.style.display = 'block';
+                            // update badge text
+                            card.querySelector('span').textContent =
+                                status.charAt(0).toUpperCase() + status.slice(1);
 
-                    // Update counters
-                    const counterOld = document.querySelector(`.filter-btn[data-filter="${oldStatus}"]`);
-                    const counterNew = document.querySelector(`.filter-btn[data-filter="${status}"]`);
-                    counterOld.textContent = `${oldStatus.charAt(0).toUpperCase() + oldStatus.slice(1)} (${parseInt(counterOld.textContent.match(/\d+/)) - 1})`;
-                    counterNew.textContent = `${status.charAt(0).toUpperCase() + status.slice(1)} (${parseInt(counterNew.textContent.match(/\d+/)) + 1})`;
-                } else showMessage(data.msg || 'Error updating status', 'error');
-            }).catch(err => showMessage('AJAX error', 'error'));
-        }
-    </script>
+                            // find buttons
+                            const approveBtn = card.querySelector('.approve-btn');
+                            const denyBtn = card.querySelector('.deny-btn');
+
+                            if (status === 'active') {
+                                // disable active button
+                                approveBtn.disabled = true;
+                                approveBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                                // remove deny button
+                                if (denyBtn) denyBtn.remove();
+                            } else if (status === 'denied') {
+                                // disable deny button
+                                denyBtn.disabled = true;
+                                denyBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                                // remove active button
+                                if (approveBtn) approveBtn.remove();
+                            }
+                        } else {
+                            showMessage(data.msg || 'Error updating status', 'error');
+                        }
+                    })
+                    .catch(() => showMessage('AJAX error', 'error'));
+            }
+            // Attach events
+            document.querySelectorAll('.approve-btn').forEach(btn => {
+                btn.addEventListener('click', () => updateStatus(btn.dataset.id, 'active'));
+            });
+            document.querySelectorAll('.deny-btn').forEach(btn => {
+                btn.addEventListener('click', () => updateStatus(btn.dataset.id, 'denied'));
+            });
+
+            // Attach events
+            document.querySelectorAll('.approve-btn').forEach(btn => {
+                btn.addEventListener('click', () => updateStatus(btn.dataset.id, 'active'));
+            });
+            document.querySelectorAll('.deny-btn').forEach(btn => {
+                btn.addEventListener('click', () => updateStatus(btn.dataset.id, 'denied'));
+            });
+
+        </script>
 </body>
 
 </html>

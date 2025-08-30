@@ -103,8 +103,10 @@ include 'database.php';
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
         const location = document.getElementById('locationFilter').value.toLowerCase();
         const priceRange = document.getElementById('priceFilter').value;
-
         const filtered = providers.filter(p => {
+            // Only show active providers
+            if (p.status !== 'active') return false;
+
             const matchesSearch = p.full_name.toLowerCase().includes(searchTerm) || p.address.toLowerCase().includes(searchTerm);
             const matchesLocation = location ? p.address.toLowerCase().includes(location) : true;
             const matchesPrice =
@@ -114,6 +116,7 @@ include 'database.php';
 
             return matchesSearch && matchesLocation && matchesPrice;
         });
+
 
         document.getElementById('resultsCount').textContent = `${filtered.length} providers found`;
 

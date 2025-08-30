@@ -53,10 +53,10 @@
                     <li><a href="apply-provider.php"
                             class="text-gray-300 hover:text-white transition-colors text-sm">Become
                             a Provider</a></li>
-                    <li><a href="interested.php" class="text-gray-300 hover:text-white transition-colors text-sm">Book
-                            Cat Stay</a></li>
-                    <li><a href="products-page.php"
-                            class="text-gray-300 hover:text-white transition-colors text-sm">Products & Services</a>
+                    <li><a href="testimonial.php" class="text-gray-300 hover:text-white transition-colors text-sm">
+                            Testimonials </a></li>
+                    <li><a href="about.php" class="text-gray-300 hover:text-white transition-colors text-sm">About
+                            Us</a>
                     </li>
                 </ul>
             </div>

@@ -1,3 +1,6 @@
+<!-- Header -->
+
+<?php include '../includes/navbar.php'; ?>
 <?php
 if (!isset($_GET['id'])) {
     echo "Product ID not provided!";
@@ -39,7 +42,7 @@ $product['brand'] = $product['brand'] ?? 'Unknown';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $product['name']; ?> - PurrfectStay</title>
+    <title><?php echo $product['name']; ?> - MeowMate</title>
     <meta name="description" content="<?php echo $page_description; ?>">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -178,45 +181,7 @@ $product['brand'] = $product['brand'] ?? 'Unknown';
 </head>
 
 <body class="bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                        <i data-lucide="cat" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <span class="text-2xl font-bold text-gray-900">PurrfectStay</span>
-                </div>
 
-                <nav class="hidden md:flex space-x-8">
-                    <a href="index.php" class="text-gray-600 hover:text-primary">Home</a>
-                    <a href="products-page.php" class="text-primary font-medium">Products</a>
-                    <a href="providers.php" class="text-gray-600 hover:text-primary">Providers</a>
-                    <a href="contact.php" class="text-gray-600 hover:text-primary">Contact</a>
-                </nav>
-
-                <div class="flex items-center space-x-4">
-                    <button class="p-2 text-gray-600 hover:text-primary relative">
-                        <i data-lucide="heart" class="w-5 h-5"></i>
-                        <span
-                            class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
-                            id="wishlist-count">0</span>
-                    </button>
-                    <a href="cart.php" class="p-2 text-gray-600 hover:text-primary relative">
-                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                        <span
-                            class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
-                            id="cart-count">0</span>
-                    </a>
-                    <a href="signin.php"
-                        class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-colors">
-                        Sign In
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <!-- Breadcrumb -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

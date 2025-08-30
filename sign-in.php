@@ -183,7 +183,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="text-center">
                     <p class="text-sm text-gray-600">
                         Don't have an account?
-                        <a href="signup.php" class="font-medium text-green-600 hover:text-green-500">
+                        <a href="/cat-hostel-meowMate/sign-up.php"
+                            class="font-medium text-green-600 hover:text-green-500">
                             Sign up here
                         </a>
                     </p>

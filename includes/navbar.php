@@ -36,31 +36,31 @@ if (isset($_COOKIE['user_id'])) {
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-            <a href="index.php"
+            <a href="/cat-hostel-meowMate/index.php"
                 class="flex items-center space-x-1 text-green-700 hover:text-green-600 transition-colors">
                 <i data-lucide="home" class="w-4 h-4"></i>
                 <span>Home</span>
             </a>
-            <a href="find-providers.php"
+            <a href="/cat-hostel-meowMate/find-providers.php"
                 class="flex items-center space-x-1 text-green-700 hover:text-green-600 transition-colors">
                 <i data-lucide="users" class="w-4 h-4"></i>
                 <span>Cat Hostel Providers</span>
             </a>
 
-            <a href="products.php"
+            <a href="/cat-hostel-meowMate/products.php"
                 class="flex items-center space-x-1 text-green-700 hover:text-green-600 transition-colors">
                 <i data-lucide="package" class="w-4 h-4"></i>
                 <span>Products</span>
             </a>
-            <a href="contact.php"
+            <a href="/cat-hostel-meowMate/contact.php"
                 class="flex items-center space-x-1 text-green-700 hover:text-green-600 transition-colors">
                 <i data-lucide="message-circle" class="w-4 h-4"></i>
                 <span>Contact Us</span>
             </a>
-            <a href="urgent-vet.php"
-                class="flex items-center space-x-1 text-red-600 hover:text-red-700 transition-colors font-medium">
-                <i data-lucide="stethoscope" class="w-4 h-4"></i>
-                <span>🚨 Urgent Vet</span>
+            <a href="/cat-hostel-meowMate/blog.php"
+                class="flex items-center space-x-1 text-green-700 hover:text-green-600 transition-colors">
+                <i data-lucide="book-open" class="w-4 h-4"></i>
+                <span>Blog</span>
             </a>
         </nav>
 
@@ -78,19 +78,22 @@ if (isset($_COOKIE['user_id'])) {
                         <!-- Dropdown -->
                         <div
                             class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                            <a href="profile.php" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
-                            <a href="settings.php" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
-                            <a href="dashboard.php" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
-                            <a href="logout.php" class="block px-4 py-2 text-red-600 hover:bg-gray-100">Logout</a>
+                            <a href="/cat-hostel-meowMate/profile.php" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
+                            <a href="/cat-hostel-meowMate/settings.php"
+                                class="block px-4 py-2 hover:bg-gray-100">Settings</a>
+                            <a href="/cat-hostel-meowMate/dashboard.php"
+                                class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
+                            <a href="/cat-hostel-meowMate/logout.php"
+                                class="block px-4 py-2 text-red-600 hover:bg-gray-100">Logout</a>
                         </div>
                     </div>
 
                 <?php else: ?>
-                    <a href="sign-in.php"
+                    <a href="/cat-hostel-meowMate/sign-in.php"
                         class="border border-green-600 text-green-600 hover:bg-green-50 bg-transparent px-4 py-2 rounded-md text-sm font-medium transition-colors">
                         Sign In
                     </a>
-                    <a href="sign-up.php"
+                    <a href="/cat-hostel-meowMate/sign-up.php"
                         class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
                         Sign Up
                     </a>
@@ -114,7 +117,7 @@ if (isset($_COOKIE['user_id'])) {
                     <i data-lucide="home" class="w-4 h-4"></i>
                     <span>Home</span>
                 </a>
-                <a href="providers.php"
+                <a href="/cat-hostel-meowMate/providers.php"
                     class="flex items-center space-x-2 text-green-700 hover:text-green-600 transition-colors">
                     <i data-lucide="users" class="w-4 h-4"></i>
                     <span>Cat Hostel Providers</span>
@@ -122,17 +125,17 @@ if (isset($_COOKIE['user_id'])) {
                 <a href="interested.php" class="text-green-700 hover:text-green-600 transition-colors">
                     Give Your Cat to Hostel
                 </a>
-                <a href="products.php"
+                <a href="/cat-hostel-meowMate/products.php"
                     class="flex items-center space-x-2 text-green-700 hover:text-green-600 transition-colors">
                     <i data-lucide="package" class="w-4 h-4"></i>
                     <span>Products</span>
                 </a>
-                <a href="contact.php"
+                <a href="/cat-hostel-meowMate/contact.php"
                     class="flex items-center space-x-2 text-green-700 hover:text-green-600 transition-colors">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
                     <span>Contact Us</span>
                 </a>
-                <a href="urgent-vet.php"
+                <a href="/cat-hostel-meowMate/urgent-vet.php"
                     class="flex items-center space-x-2 text-red-600 hover:text-red-700 transition-colors font-medium">
                     <i data-lucide="stethoscope" class="w-4 h-4"></i>
                     <span>🚨 Urgent Vet</span>

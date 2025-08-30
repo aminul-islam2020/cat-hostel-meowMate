@@ -75,11 +75,9 @@ $provider['services'] = isset($provider['services']) ? json_decode($provider['se
             <p class="text-gray-600 mb-4"><strong>Rate:</strong> BDT <?php echo $provider['overnight_rate']; ?> / night
             </p>
 
-            <h3 class="text-xl font-bold mb-2">Services Provided:</h3>
+            <h3 class="text-xl font-bold mb-2">Description:</h3>
             <ul class="list-disc pl-5 mb-6">
-                <?php foreach ($provider['services'] as $service): ?>
-                    <li><?php echo $service; ?></li>
-                <?php endforeach; ?>
+                <?php echo $provider['facility_description']; ?>
             </ul>
 
             <div class="flex gap-4">
